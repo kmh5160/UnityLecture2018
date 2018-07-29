@@ -70,7 +70,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4846141532755740}
-  - component: {fileID: 114476801446205216}
   m_Layer: 9
   m_Name: CasePoint
   m_TagString: Untagged
@@ -109,6 +108,7 @@ GameObject:
   - component: {fileID: 33749764312212674}
   - component: {fileID: 23527650418739668}
   - component: {fileID: 95503282206643716}
+  - component: {fileID: 114100117092208340}
   m_Layer: 9
   m_Name: ColtM4
   m_TagString: Untagged
@@ -142,7 +142,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4808974815137064}
-  - component: {fileID: 114941820397772238}
   m_Layer: 9
   m_Name: ShootPoint
   m_TagString: Untagged
@@ -202,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1909707994727074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.452, y: -0.30899996, z: 0.851}
+  m_LocalPosition: {x: 0.4519999, y: -0.30899996, z: 0.8510002}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 4819760119403462}
@@ -670,6 +669,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114100117092208340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909707994727074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af99b293bbbad84fb1aecab67762f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setDelay: 5
+  Bullet: {fileID: 1117635054499424, guid: 7247dcefc768dcb408ea46f7cd5d1a3c, type: 2}
+  Case: {fileID: 1814321002531116, guid: 848989a1147971441a744daaf3c929aa, type: 2}
 --- !u!114 &114195881680924612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -686,30 +699,6 @@ MonoBehaviour:
   mouseSensitivityX: 2
   mouseSensitivityY: 2
   healFX: {fileID: 0}
---- !u!114 &114476801446205216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828425227164466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725dad6cba84e784a93ba352fb837747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Case: {fileID: 1814321002531116, guid: 848989a1147971441a744daaf3c929aa, type: 2}
---- !u!114 &114941820397772238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1939801753290704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5e1511909a1654987af30db61211d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet: {fileID: 1117635054499424, guid: 7247dcefc768dcb408ea46f7cd5d1a3c, type: 2}
 --- !u!136 &136255674122455920
 CapsuleCollider:
   m_ObjectHideFlags: 1
