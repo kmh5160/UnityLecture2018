@@ -41,6 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        Animator anim;
 
         // Use this for initialization
         private void Start()
@@ -81,6 +82,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, 10f))
+                {
+                    print(hit.transform.name);
+                    anim = hit.transform.GetComponentInChildren<Animator>();
+                    anim.SetBool("isDamaging", true);
+                }
+            }
+            else
+                anim.SetBool("isDamaging", false);
         }
 
 
