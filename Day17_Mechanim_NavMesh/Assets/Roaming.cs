@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Roaming : MonoBehaviour {
     public Transform wayPointsRoot;
@@ -12,9 +13,11 @@ public class Roaming : MonoBehaviour {
     Vector3 nextPoint;
 
     Animator anim;
+    NavMeshAgent agent;
 
 	void Start () {
         anim = GetComponentInChildren<Animator>();
+        agent = GetComponent<NavMeshAgent>();
 
         wayPoints = new List<Transform>();
         foreach (Transform t in wayPointsRoot)
@@ -35,7 +38,7 @@ public class Roaming : MonoBehaviour {
 
         Vector3 direction = player.position - transform.position;
         float angle = Vector3.Angle(direction, transform.forward);
-        if (direction.magnitude < 10 && angle < 45)
+        if (direction.magnitude < 5 && angle < 45)
         {
             direction.y = 0;
             anim.SetBool("isIdle", false);
@@ -86,16 +89,18 @@ public class Roaming : MonoBehaviour {
                 dir.y = 0;
                 float distance = dir.magnitude;
 
+                agent.destination = nextPoint;
+
                 // 바라보기
                 //transform.LookAt(nextPoint); // 절도있게
                 //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir, Vector3.up), 0.15f); // 자연스럽게
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir, Vector3.up), 0.15f);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir, Vector3.up), 0.15f);
 
                 // speedAngle = 120;
                 // speedAngle * Time.deltaTime / angle;
 
                 // 이동하기
-                transform.position = Vector3.MoveTowards(transform.position, nextPoint, moveSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, nextPoint, moveSpeed * Time.deltaTime);
                 //transform.position = Vector3.Lerp(transform.position, nextPoint, moveSpeed * Time.deltaTime / distance);
                 //transform.position = Vector3.Slerp(transform.position, nextPoint, moveSpeed * Time.deltaTime / distance);
             }
