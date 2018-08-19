@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection *= 1.5f * moveSpeed;
-        anim.SetFloat("Speed", con.velocity.magnitude);
+        //anim.SetFloat("Speed", con.velocity.magnitude);
 
         if (Input.GetButtonDown("Jump"))
             jump();
