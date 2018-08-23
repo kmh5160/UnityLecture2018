@@ -33,7 +33,7 @@ public class Combat : StateMachineBehaviour {
     override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
         Debug.Log("Enter: Combat");
-        int r = 2; //Random.Range(0, 3);
+        int r = 1; //Random.Range(0, 3);
         if (r == 0)
             animator.SetTrigger("Attack1");
         else if (r == 1)
