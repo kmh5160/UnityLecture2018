@@ -29,6 +29,8 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour {
         if (Input.GetKeyDown(KeyCode.X) && pc.isDisarmed && !pc.isEquipped && !animator.IsInTransition(0))
         {
             animator.SetTrigger("Equip");
+            Debug.Log(pc.weaponDisarmHolder.GetChild(0).name);
+            animator.SetTrigger(pc.weaponDisarmHolder.GetChild(0).name);
         }
     }
 

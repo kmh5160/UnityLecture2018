@@ -28,6 +28,7 @@ public class PickupWeapon : StateMachineBehaviour {
             weapon.transform.SetParent(weaponHolder.transform);
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
+            animator.SetTrigger(weapon.name);
         }
     }
 
