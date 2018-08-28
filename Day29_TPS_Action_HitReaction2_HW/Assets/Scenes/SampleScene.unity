@@ -994,7 +994,11 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
+<<<<<<< HEAD
   m_MinVertexDistance: 0.05
+=======
+  m_MinVertexDistance: 0.1
+>>>>>>> a3d2e0f86097557aa3ec32735c832793e46320b7
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!224 &861465339 stripped
