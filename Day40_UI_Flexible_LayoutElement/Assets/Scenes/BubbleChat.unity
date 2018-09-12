@@ -1165,9 +1165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9356524e86d294ea23e2528714a8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatPrefab: {fileID: 0}
-  content: {fileID: 0}
-  inputField: {fileID: 0}
+  chatPrefab: {fileID: 224686234672924748, guid: 497fbbbe309d44344892a9088a64e918,
+    type: 2}
+  content: {fileID: 1315265728}
+  inputField: {fileID: 2122188667}
 --- !u!1 &2054157358 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1083444367413634, guid: 497fbbbe309d44344892a9088a64e918,
