@@ -8,7 +8,7 @@ public class Bounce_Grass : MonoBehaviour {
     {
         if (collision.collider.tag == "Player")
         {
-            print("Bounce!");
+            //print("Bounce!");
             collision.collider.GetComponent<Rigidbody>().AddForce(transform.up * 300f);
         }
     }
