@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bounce_Grass : MonoBehaviour {
+public class MobBounce : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Player" || collision.collider.tag == "Mob")
+        if (collision.collider.tag == "Player")
         {
             //print("Bounce!");
             collision.collider.GetComponent<Rigidbody>().AddForce(transform.up * 300f);
