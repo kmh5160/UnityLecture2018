@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class javelinController : MonoBehaviour, IHitBoxResponder {
+public class JavelinController : MonoBehaviour, IHitBoxResponder {
     public float throwingForce = 35f;
 
     Rigidbody rb;
@@ -11,7 +11,7 @@ public class javelinController : MonoBehaviour, IHitBoxResponder {
 
 	// Use this for initialization
 	void Awake () {
-        rb.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         hitBox = GetComponentInChildren<HitBox>();
         hitBox.SetResponder(this);
         hitBox.StartCheckingCollision();
@@ -34,5 +34,15 @@ public class javelinController : MonoBehaviour, IHitBoxResponder {
         DOTween.Kill(transform);
         transform.SetParent(collider.gameObject.transform);
         hitBox.StopCheckingCollision();
+
+        HurtBox hurtBox = collider.GetComponent<HurtBox>();
+        if (hurtBox != null)
+            hurtBox.GetHitBy(1);
+
+        HitReaction hr = collider.GetComponentInParent<HitReaction>();
+        if (hr != null)
+        {
+            hr.Beaten();
+        }
     }
 }

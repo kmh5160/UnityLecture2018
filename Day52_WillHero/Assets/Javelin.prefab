@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4057317669763328}
   - component: {fileID: 54619667088621482}
-  - component: {fileID: 114967521311518720}
+  - component: {fileID: 114727775887423040}
   m_Layer: 0
   m_Name: Javelin
   m_TagString: Untagged
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443131671245810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 4, z: 0}
+  m_LocalPosition: {x: 9.32, y: 4.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4748103443466428}
@@ -98,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 1096564703474104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.1, z: 1}
+  m_LocalScale: {x: 3, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4057317669763328}
   m_RootOrder: 0
@@ -172,6 +172,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6, y: 0.2, z: 0.2}
   m_Center: {x: 0.7, y: 0, z: 0}
+--- !u!114 &114727775887423040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443131671245810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce83c56eddf005c42a56f826b2ca9c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwingForce: 35
 --- !u!114 &114871992593781912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,15 +205,3 @@ MonoBehaviour:
   collidingColor: {r: 0.8962264, g: 0.36779106, b: 0.8153547, a: 0}
   drawGizmo: 1
   state: 0
---- !u!114 &114967521311518720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443131671245810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce83c56eddf005c42a56f826b2ca9c4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwingForce: 35
