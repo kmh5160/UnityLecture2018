@@ -16,9 +16,23 @@ public class JavelinController : MonoBehaviour, IHitBoxResponder {
         hitBox.SetResponder(this);
         hitBox.StartCheckingCollision();
 	}
-	
-	public void Throw()
+
+    private void OnEnable()
     {
+        hitBox.StartCheckingCollision();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private void OnDisable()
+    {
+        hitBox.StopCheckingCollision();
+        DOTween.Kill(transform);
+    }
+
+    public void Throw()
+    {
+        rb.isKinematic = false;
         rb.AddForce(transform.right * throwingForce, ForceMode.VelocityChange);
         transform.DORotate(-transform.forward * 80f, 2f);
     }

@@ -6,6 +6,8 @@ using UnityEngine;
 public class SmoothFollowing : MonoBehaviour {
     public float smoothTime = 0.05f;
     public float smoothTimeY = 0.7f;
+    public float thresholdY = 2f;
+    public Vector3 localPosition = new Vector3(3, 0, -24);
 
     Transform target;
     Vector3 velocity = Vector3.zero;
@@ -31,11 +33,11 @@ public class SmoothFollowing : MonoBehaviour {
             return;
         }
 
-        Vector3 targetPosition = target.TransformPoint(new Vector3(3, 0, -24));
+        Vector3 targetPosition = target.TransformPoint(localPosition);
         float y = Mathf.SmoothDamp(transform.position.y, targetPosition.y, ref velocityY, smoothTimeY);
         Vector3 p = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         float d = targetPosition.y - transform.position.y;
-        if (Mathf.Abs(d) > 2f)
+        if (Mathf.Abs(d) > thresholdY)
         {
             p.y = y;
         }

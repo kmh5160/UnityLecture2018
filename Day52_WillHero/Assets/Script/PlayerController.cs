@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZObjectPools;
 
 public class PlayerController : MonoBehaviour {
     public float dashDistance = 3f;
@@ -12,9 +13,12 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
     Coroutine coDash;
 
+    EZObjectPool objectPool;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>();
+        objectPool = GetComponent<EZObjectPool>();
     }
 
     void Update()
@@ -32,10 +36,20 @@ public class PlayerController : MonoBehaviour {
 
     private void FireWeapon()
     {
-        GameObject weaponBullet = Instantiate(javelinePrefab, weaponHolder.transform.position, weaponHolder.transform.rotation);
+        //GameObject weaponBullet = Instantiate(javelinePrefab, weaponHolder.transform.position, weaponHolder.transform.rotation);
         //Quaternion.AngleAxis(30, Vector3.forward)
-        weaponBullet.GetComponent<JavelinController>().Throw();
-        Destroy(weaponBullet, 10f);
+        //weaponBullet.GetComponent<JavelinController>().Throw();
+        //Destroy(weaponBullet, 10f);
+
+        GameObject weaponBullet;
+        if (objectPool.TryGetNextObject(weaponHolder.transform.position, weaponHolder.transform.rotation, out weaponBullet))
+        {
+            weaponBullet.GetComponent<JavelinController>().Throw();
+        }
+        else
+        {
+            print("There is no pooled object");
+        }
     }
 
     IEnumerator Dash(float distance, float duration)

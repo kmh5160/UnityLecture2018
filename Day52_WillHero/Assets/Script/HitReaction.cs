@@ -5,6 +5,8 @@ using DG.Tweening;
 using System;
 
 public class HitReaction : MonoBehaviour {
+    public GameObject hitFXPrefab;
+
     Rigidbody rb;
     Health health;
 
@@ -18,6 +20,8 @@ public class HitReaction : MonoBehaviour {
     private void Die()
     {
         print("Die!!");
+        var f = Instantiate(hitFXPrefab, transform.position, Quaternion.AngleAxis(-90, Vector3.right));
+        Destroy(f, 3f);
         transform.Find("PushBox").GetComponent<BoxCollider>().enabled = false;
         transform.GetComponent<Jumping>().loopOn = false;
         transform.Find("Model").GetComponent<MeshRenderer>().material.color = Color.red;

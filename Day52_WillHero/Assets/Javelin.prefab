@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4057317669763328}
   - component: {fileID: 54619667088621482}
   - component: {fileID: 114727775887423040}
+  - component: {fileID: 114968642788532812}
   m_Layer: 0
   m_Name: Javelin
   m_TagString: Untagged
@@ -200,8 +201,21 @@ MonoBehaviour:
     m_Bits: 8704
   hitBoxes:
   - {fileID: 65164460328178916}
-  inactiveColor: {r: 0.5660378, g: 0.5580278, b: 0.5580278, a: 0}
-  collisionOpenColor: {r: 0.35590956, g: 0.8113208, b: 0.38675672, a: 0}
-  collidingColor: {r: 0.8962264, g: 0.36779106, b: 0.8153547, a: 0}
+  inactiveColor: {r: 0.5660378, g: 0.5580278, b: 0.5580278, a: 0.78431374}
+  collisionOpenColor: {r: 0.35590956, g: 0.8113208, b: 0.38675672, a: 0.78431374}
+  collidingColor: {r: 0.8962264, g: 0.36779106, b: 0.8153547, a: 0.78431374}
   drawGizmo: 1
   state: 0
+--- !u!114 &114968642788532812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443131671245810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e32d1736382904598d6784b948265c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentPool: {fileID: 0}
+  DisableTime: 5
