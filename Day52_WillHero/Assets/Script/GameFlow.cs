@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 public class GameFlow : Singleton<GameFlow> {
     public RectTransform gameSplash;
     public RectTransform eventUI;
+    public RectTransform titleScene;
+    public RectTransform playScene;
+    public RectTransform restartGameUI;
+
+    [HideInInspector]
+    public Animator fsm;
+    [HideInInspector]
+    public PlayerController player;
 
     protected GameFlow() { }
 
@@ -17,6 +25,7 @@ public class GameFlow : Singleton<GameFlow> {
 
     // Use this for initialization
     void Start () {
+        fsm = GetComponent<Animator>();
         Physics.gravity *= 4f;
 
         StartCoroutine(RestartGame());
@@ -30,5 +39,6 @@ public class GameFlow : Singleton<GameFlow> {
             print(asyncLoad.progress);
             yield return null;
         }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 }

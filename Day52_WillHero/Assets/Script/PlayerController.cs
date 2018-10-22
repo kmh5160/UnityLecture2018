@@ -6,14 +6,16 @@ using EZObjectPools;
 
 public class PlayerController : MonoBehaviour {
     public float dashDistance = 3f;
+    public bool playableOn = false;
     public bool dashOn = true;
     public Transform weaponHolder;
     public GameObject javelinePrefab;
 
     Rigidbody rb;
     Coroutine coDash;
-
     EZObjectPool objectPool;
+
+    public event System.Action OnDeath;
 
     void Start()
     {
@@ -23,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (playableOn && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
         {
             if (coDash != null)
                 StopCoroutine(coDash);
@@ -89,5 +91,12 @@ public class PlayerController : MonoBehaviour {
             d += distance / duration * Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    internal void RingOut()
+    {
+        if (OnDeath != null)
+            OnDeath();
+        //transform.position = new Vector3(3, 5, 0);
     }
 }

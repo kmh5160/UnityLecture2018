@@ -15,6 +15,7 @@ public class TestMode : MonoBehaviour {
         if (isTestMode)
         {
             Physics.gravity *= 4f;
+            GameObject.FindObjectOfType<PlayerController>().playableOn = true;
         }
         else
         {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
+public class RestartGameUIButtonHandler : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
 {
     public RectTransform root;
 
@@ -14,7 +14,8 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         root.GetComponent<Image>().DOFade(0f, 0.5f).OnComplete(() =>
         {
             root.gameObject.SetActive(false);
-            GameFlow.Instance.fsm.SetTrigger("CloseUI");
+            GameFlow.Instance.StartCoroutine(GameFlow.Instance.RestartGame());
+            GameFlow.Instance.fsm.SetTrigger("RestartGame");
         });
     }
 
