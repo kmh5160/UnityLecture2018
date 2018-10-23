@@ -13,9 +13,9 @@ public class RestartGameUIButtonHandler : MonoBehaviour, IPointerUpHandler, IPoi
     {
         root.GetComponent<Image>().DOFade(0f, 0.5f).OnComplete(() =>
         {
-            root.gameObject.SetActive(false);
             GameFlow.Instance.StartCoroutine(GameFlow.Instance.RestartGame());
             GameFlow.Instance.fsm.SetTrigger("RestartGame");
+            root.gameObject.SetActive(false);
         });
     }
 

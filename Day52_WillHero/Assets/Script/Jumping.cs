@@ -51,7 +51,22 @@ public class Jumping : MonoBehaviour {
                                           groundCheckBox.transform.rotation,
                                           groundMask,
                                           QueryTriggerInteraction.Ignore);
-        isGrounded = overlapsGround;
+        if (overlapsGround)
+        {
+            RaycastHit hit;
+            bool isOnGround = Physics.BoxCast(groundCheckBox.transform.TransformPoint(groundCheckBox.center),
+                                              groundCheckBox.size * 0.5f * 0.9f,
+                                              Vector3.down,
+                                              out hit,
+                                              groundCheckBox.transform.rotation,
+                                              0.2f,
+                                              groundMask,
+                                              QueryTriggerInteraction.Ignore);
+            isGrounded = isOnGround;
+        }
+        else
+            isGrounded = false;
+        //isGrounded = overlapsGround;
 
         if (isGrounded)
             state = ColliderState.Colliding;

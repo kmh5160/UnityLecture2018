@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EZObjectPools;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour {
     public float dashDistance = 3f;
@@ -17,10 +18,13 @@ public class PlayerController : MonoBehaviour {
 
     public event System.Action OnDeath;
 
+    Jumping jumping;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         objectPool = GetComponent<EZObjectPool>();
+        jumping = GetComponent<Jumping>();
     }
 
     void Update()
@@ -30,7 +34,7 @@ public class PlayerController : MonoBehaviour {
             if (coDash != null)
                 StopCoroutine(coDash);
             if (dashOn)
-                coDash = StartCoroutine(Dash(dashDistance, 0.1f));
+                coDash = StartCoroutine(Dash(dashDistance, 0.15f));
             FireWeapon();
         }
 
@@ -86,6 +90,7 @@ public class PlayerController : MonoBehaviour {
         float d = 0;
         while(d < distance)
         {
+            print("knock");
             rb.velocity = Vector3.zero;
             rb.MovePosition(transform.position + dir * distance / duration * Time.fixedDeltaTime);
             d += distance / duration * Time.fixedDeltaTime;
@@ -98,5 +103,18 @@ public class PlayerController : MonoBehaviour {
         if (OnDeath != null)
             OnDeath();
         //transform.position = new Vector3(3, 5, 0);
+    }
+
+    internal void Beaten()
+    {
+        Death();
+        if (OnDeath != null)
+            OnDeath();
+    }
+
+    void Death()
+    {
+        jumping.loopOn = false;
+        transform.Find("Model").DOScaleY(0.2f, 0.5f);
     }
 }
