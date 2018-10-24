@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public bool dashOn = true;
     public Transform weaponHolder;
     public GameObject javelinePrefab;
+    public float slidingSpeed = 1f;
 
     Rigidbody rb;
     Coroutine coDash;
@@ -19,6 +20,9 @@ public class PlayerController : MonoBehaviour {
     public event System.Action OnDeath;
 
     Jumping jumping;
+
+    [SerializeField]
+    bool isSliding = false;
 
     void Start()
     {
@@ -35,6 +39,10 @@ public class PlayerController : MonoBehaviour {
                 StopCoroutine(coDash);
             if (dashOn)
                 coDash = StartCoroutine(Dash(dashDistance, 0.15f));
+            if (isSliding)
+            {
+                rb.AddForce(Vector3.up * 50f, ForceMode.VelocityChange);
+            }
             FireWeapon();
         }
 
@@ -116,5 +124,50 @@ public class PlayerController : MonoBehaviour {
     {
         jumping.loopOn = false;
         transform.Find("Model").DOScaleY(0.2f, 0.5f);
+    }
+
+    private void FixedUpdate()
+    {
+        CheckSliding();
+    }
+
+    private void CheckSliding()
+    {
+        if (!jumping.isGrounded && rb.velocity.y <= 0)
+        {
+            RaycastHit hit1;
+            Ray r1 = new Ray(transform.position + Vector3.up * 0.5f, Vector3.right);
+            Debug.DrawLine(r1.origin, r1.origin + r1.direction * 0.65f, Color.magenta);
+            bool isInFrontOfMeTop = Physics.Raycast(r1, out hit1, 0.65f, 1 << LayerMask.NameToLayer("Ground"));
+
+            RaycastHit hit2;
+            Ray r2 = new Ray(transform.position + Vector3.down * 0.5f, Vector3.right);
+            Debug.DrawLine(r2.origin, r2.origin + r2.direction * 0.65f, Color.yellow);
+            bool isInFrontOfMeBot = Physics.Raycast(r2, out hit2, 0.65f, 1 << LayerMask.NameToLayer("Ground"));
+
+            if (isInFrontOfMeTop || isInFrontOfMeBot)
+            {
+                RaycastHit hit = isInFrontOfMeTop ? hit1 : hit2;
+                rb.useGravity = false;
+                Vector3 pos = transform.position;
+                float properDistance = 0.55f;
+                if (hit.distance < properDistance)
+                    pos.x -= properDistance - hit.distance;
+                //rb.MovePosition(pos);
+                rb.MovePosition(pos + Vector3.down * slidingSpeed * Time.deltaTime);
+                isSliding = true;
+
+            }
+            else
+            {
+                isSliding = false;
+                rb.useGravity = true;
+            }
+        }
+        else
+        {
+            isSliding = false;
+            rb.useGravity = true;
+        }
     }
 }
