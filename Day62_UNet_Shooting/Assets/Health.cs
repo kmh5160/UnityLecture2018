@@ -10,6 +10,7 @@ public class Health : NetworkBehaviour
     public int maxHealth = 100;
     [SyncVar(hook ="OnChangeHealth")]
     public float currentHealth;
+    public bool destroyOnDeath;
 
     public RectTransform healthBar;
     public event System.Action OnDeath;
@@ -41,8 +42,13 @@ public class Health : NetworkBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0f)
         {
-            currentHealth = maxHealth;
-            RpcRespawn();
+            if (destroyOnDeath)
+                Destroy(gameObject);
+            else
+            {
+                currentHealth = maxHealth;
+                RpcRespawn();
+            }
             //die();
         }
         RedrawHealthBar();
